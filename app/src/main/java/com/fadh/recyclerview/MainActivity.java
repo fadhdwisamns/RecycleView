@@ -23,6 +23,7 @@ private RecyclerView rvHeroes;
 
         list.addAll(HeroesData.getListData());
         showRecyclerList();
+        this.setTitle("Pahlawan Indonesia");
     }
     private void showRecyclerList(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));

@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.fadh.recyclerview.adapter.CardViewHeroAdapter;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 private RecyclerView rvHeroes;
     private ArrayList<Hero> list = new ArrayList<>();
-
+    private String title = "Mode List";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,8 @@ private RecyclerView rvHeroes;
 
         list.addAll(HeroesData.getListData());
         showRecyclerList();
-        this.setTitle("Pahlawan Indonesia");
+        setActionBarTitle(title);
+//        this.setTitle("Pahlawan Indonesia");
     }
     private void showRecyclerList(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));
@@ -35,6 +38,11 @@ private RecyclerView rvHeroes;
         rvHeroes.setLayoutManager(new GridLayoutManager(this, 2));
         GridHeroAdapter gridHeroAdapter = new GridHeroAdapter(list);
         rvHeroes.setAdapter(gridHeroAdapter);
+    }
+    private void showRecyclerCardView(){
+        rvHeroes.setLayoutManager(new LinearLayoutManager(this));
+        CardViewHeroAdapter cardViewHeroAdapter = new CardViewHeroAdapter(list);
+        rvHeroes.setAdapter(cardViewHeroAdapter);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,17 +58,24 @@ private RecyclerView rvHeroes;
     public void setMode(int selectedMode) {
         switch (selectedMode) {
             case R.id.action_list:
+                title = "Mode List";
                 showRecyclerList();
                 break;
 
             case R.id.action_grid:
+                title = "Mode Grid";
                 showRecyclerGrid();
                 break;
 
             case R.id.action_cardview:
-
+                title = "Mode CardView";
+                showRecyclerCardView();
                 break;
         }
     }
-
+    private void setActionBarTitle(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+    }
 }

@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 
 public class ListHeroAdapter extends RecyclerView.Adapter<ListHeroAdapter.ListViewHolder> {
+    private int[] imgs = new int[] {R.drawable.ahmad_yani, R.drawable.ahmad_dahlan};
+
     private ArrayList<Hero> listHero;
 
     public ListHeroAdapter(ArrayList<Hero> list) {
